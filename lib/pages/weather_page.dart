@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart'; // Added import for Lottie package
-import 'package:weather_app_1/models/weather_model.dart';
-import 'package:weather_app_1/services/weather_service.dart';
+import 'package:lottie/lottie.dart';
+import '../models/weather_model.dart';
+import '../services/weather_service.dart'; // Added import for Lottie package
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({Key? key}) : super(key: key);
@@ -34,7 +34,8 @@ class WeatherPageState extends State<WeatherPage> {
 
   // Weather animation
   String getWeatherAnimation(String? mainCondition) {
-    if (mainCondition == null) return 'assets/sunny.json'; // Fixed comparison operator and null check
+    if (mainCondition == null)
+      return 'assets/sunny.json'; // Fixed comparison operator and null check
 
     switch (mainCondition.toLowerCase()) {
       case 'clouds':
@@ -65,7 +66,8 @@ class WeatherPageState extends State<WeatherPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(_weather?.cityName ?? "Loading City"),
-            Lottie.asset(getWeatherAnimation(_weather?.mainCondition)), // Updated Lottie.asset call
+            Lottie.asset(getWeatherAnimation(
+                _weather?.mainCondition)), // Updated Lottie.asset call
             Text('${_weather?.temperature.round()}°C'),
             Text(_weather?.mainCondition ?? ""), // Fixed null safety operator
           ],
